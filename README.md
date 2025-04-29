@@ -19,7 +19,7 @@ Construido con **Node.js**, **BuilderBot**, **Baileys** y **Express**.
 - docker run -d --name vibras-store -p 3008:3008 -e PORT=3008 store-bot
 
 
-##✨ Créditos
+## ✨ Créditos
 
 - BuilderBot
 - Baileys
