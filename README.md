@@ -1,44 +1,110 @@
-<p align="center">
-  <a href="https://builderbot.vercel.app/">
-    <picture>
-      <img src="https://builderbot.vercel.app/assets/thumbnail-vector.png" height="80">
-    </picture>
-    <h2 align="center">BuilderBot</h2>
-  </a>
-</p>
+📦 vibras-bot-whatsapp
+🤖 Bot de WhatsApp para confirmar compras y pagos de Vibras Store.
+Construido con Node.js, BuilderBot, Baileys y Express.
 
+🚀 Características
+Recibe notificaciones de transacciones exitosas, rechazadas o pendientes.
 
+Envía mensajes personalizados a los clientes vía WhatsApp.
 
-<p align="center">
-  <a aria-label="NPM version" href="https://www.npmjs.com/package/@builderbot/bot">
-    <img alt="" src="https://img.shields.io/npm/v/@builderbot/bot?color=%2300c200&label=%40bot-whatsapp">
-  </a>
-  <a aria-label="Join the community on GitHub" href="https://link.codigoencasa.com/DISCORD">
-    <img alt="" src="https://img.shields.io/discord/915193197645402142?logo=discord">
-  </a>
-</p>
+Guarda la sesión de WhatsApp en archivos locales para no perder la conexión.
 
+Arquitectura limpia usando flujos (Flows) en BuilderBot.
 
-## Getting Started
+Listo para correr en Docker o en cualquier servidor Node.js.
 
-With this library, you can build automated conversation flows agnostic to the WhatsApp provider, set up automated responses for frequently asked questions, receive and respond to messages automatically, and track interactions with customers. Additionally, you can easily set up triggers to expand functionalities limitlessly.
+📂 Estructura del proyecto
+bash
+Copy
+Edit
+.
+├── assets/              # Recursos opcionales (ej: imágenes, archivos)
+├── src/
+│   ├── apis/
+│   │   ├── confirmation.js
+│   │   └── test.js
+│   └── app.js           # Archivo principal
+├── package.json
+└── README.md
+⚙️ Instalación
+Clona el repositorio
 
-```
-npm create builderbot@latest
-```
+bash
+Copy
+Edit
+git clone https://github.com/tuusuario/vibras-bot-whatsapp.git
+cd vibras-bot-whatsapp
+Instala las dependencias
 
+bash
+Copy
+Edit
+npm install
+Crea la carpeta de sesiones (opcional si no se crea automáticamente)
 
-## Documentation
+bash
+Copy
+Edit
+mkdir bot_sessions
+Levanta el bot
 
-Visit [builderbot](https://builderbot.vercel.app/) to view the full documentation.
+bash
+Copy
+Edit
+npm run dev
+O simplemente:
 
+bash
+Copy
+Edit
+node src/app.js
+📨 Endpoints disponibles
+POST /v1/confirmation → Recibe los datos de pago y envía el mensaje al cliente.
 
-## Official Course
+Ejemplo de JSON esperado:
+json
+Copy
+Edit
+{
+  "x_cod_transaction_state": "1",
+  "x_response_reason_text": "Transacción aprobada",
+  "x_amount": "50000",
+  "x_id_invoice": "INV123456",
+  "x_transaction_id": "TRX654321",
+  "x_customer_movil": "3182413489",
+  "x_description": "Compra de camiseta Vibras",
+  "x_currency_code": "COP",
+  "x_bank_name": "Bancolombia",
+  "x_quotas": "1",
+  "x_fecha_transaccion": "2025-04-28",
+  "x_customer_document": "1234567890",
+  "x_customer_name": "Juan",
+  "x_customer_lastname": "Pérez",
+  "x_customer_email": "juanperez@email.com"
+}
+📋 Variables de entorno
+Puedes configurar un archivo .env si deseas definir el puerto del servidor:
 
-If you want to discover all the functions and features offered by the library you can take the course.
-[View Course](https://app.codigoencasa.com/courses/builderbot?refCode=LEIFER)
+env
+Copy
+Edit
+PORT=3008
+🐳 Docker (opcional)
+Para correrlo en Docker:
 
+bash
+Copy
+Edit
+docker build -t vibras-bot .
+docker run -p 3008:3008 -v $(pwd)/bot_sessions:/app/bot_sessions vibras-bot
+(Recuerda mapear la carpeta de sesiones correctamente.)
 
-## Contact Us
-- [💻 Discord](https://link.codigoencasa.com/DISCORD)
-- [👌 𝕏 (Twitter)](https://twitter.com/leifermendez)
+📜 Licencia
+Este proyecto está bajo la licencia MIT.
+
+✨ Créditos
+BuilderBot
+
+Baileys
+
+Inspirado en soluciones modernas de automatización de WhatsApp.
